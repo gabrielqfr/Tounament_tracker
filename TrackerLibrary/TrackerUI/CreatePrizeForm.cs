@@ -18,14 +18,6 @@ namespace TrackerUI
             InitializeComponent();
         }
 
-        private void ResetForm()
-        {
-            placeNameValue.Clear();
-            placeNumberValue.Clear();
-            prizeAmountValue.Text = "0";
-            prizePercentageValue.Text = "0";
-        }
-
         private void CreatePrizeButton_Click(object sender, EventArgs e)
         {
             if (ValidateForm())
@@ -43,7 +35,7 @@ namespace TrackerUI
             }
             else
             {
-                MessageBox.Show("This form has invalid information. Please check it and try again.");
+                MessageBox.Show("This form has invalid or missing information. Please check it and try again.");
             }
         }
 
@@ -87,6 +79,14 @@ namespace TrackerUI
             }
 
             return output;
+        }
+
+        private void ResetForm()
+        {
+            placeNameValue.Clear();
+            placeNumberValue.Clear();
+            prizeAmountValue.Text = "0";
+            prizePercentageValue.Text = "0";
         }
     }
 }
