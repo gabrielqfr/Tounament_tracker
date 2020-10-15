@@ -132,10 +132,14 @@ namespace TrackerUI
                 TournamentModel tournament = new TournamentModel
                 {
                     TournamentName = tournamentNameValue.Text,
-                    EntryFee = decimal.Parse(entryFeeValue.Text)
+                    EntryFee = decimal.Parse(entryFeeValue.Text),
+                    EnteredTeams = selectedTeams,
+                    Prizes = selectedPrizes
                 };
 
-                GlobalConfig.Connection.CreateTournament(tournament, selectedTeams, selectedPrizes);
+                TournamentLogic.CreateRounds(tournament);
+
+                GlobalConfig.Connection.CreateTournament(tournament);
 
                 callingForm.TournamentComplete(tournament);
 

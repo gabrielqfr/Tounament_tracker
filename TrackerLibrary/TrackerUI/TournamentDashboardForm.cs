@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using TrackerLibrary;
 using TrackerLibrary.Models;
@@ -34,9 +30,9 @@ namespace TrackerUI
 
         private void LoadTournamentButton_Click(object sender, EventArgs e)
         {
-            TournamentViewerForm tournamentViewerForm = new TournamentViewerForm();
+            TournamentModel selectedTournament = (TournamentModel)loadExistingTournamentDropdown.SelectedItem;
+            TournamentViewerForm tournamentViewerForm = new TournamentViewerForm(selectedTournament);
             tournamentViewerForm.Show();
-            this.Close();
         }
 
         public void TournamentComplete(TournamentModel model)
