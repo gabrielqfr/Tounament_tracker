@@ -13,15 +13,7 @@ namespace TrackerUI
         public CreateTeamForm()
         {
             InitializeComponent();
-            //CreateSampleData();
             WireUpLists();
-        }
-
-        private void CreateSampleData()
-        {
-            selectedTeamMembers.Add(new PersonModel { FirstName = "Gabriel", LastName = "Quirino" });
-            selectedTeamMembers.Add(new PersonModel { FirstName = "Gabriel", LastName = "Quirinasdasdasdo" });
-            selectedTeamMembers.Add(new PersonModel { FirstName = "Gabriel", LastName = "Quirinoasdasd" });
         }
 
         private void WireUpLists()
