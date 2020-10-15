@@ -47,8 +47,11 @@ namespace TrackerUI
                     CellphoneNumber = cellphoneValue.Text
                 };
 
-                GlobalConfig.Connection.CreatePerson(person);
+                person = GlobalConfig.Connection.CreatePerson(person);
 
+                selectedTeamMembers.Add(person);
+
+                WireUpLists();
                 MessageBox.Show("Member added successfully!");
                 ResetForm();
             }
@@ -102,10 +105,13 @@ namespace TrackerUI
         {
             PersonModel p = (PersonModel)teamMembersListBox.SelectedItem;
 
-            selectedTeamMembers.Remove(p);
-            availableTeamMembers.Add(p);
+            if (p != null)
+            {
+                selectedTeamMembers.Remove(p);
+                availableTeamMembers.Add(p);
 
-            WireUpLists();
+                WireUpLists();
+            }
         }
 
         private void CreateTeamButton_Click(object sender, EventArgs e)

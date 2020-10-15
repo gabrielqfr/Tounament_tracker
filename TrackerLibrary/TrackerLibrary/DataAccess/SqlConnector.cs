@@ -74,6 +74,11 @@ namespace TrackerLibrary.DataAccess
             return output;
         }
 
+        /// <summary>
+        /// Saves a new Team to the database.
+        /// </summary>
+        /// <param name="model">The team information</param>
+        /// <returns>The team information</returns>
         public TeamModel CreateTeam(TeamModel model)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
@@ -86,14 +91,13 @@ namespace TrackerLibrary.DataAccess
 
                 model.Id = p.Get<int>("@id");
 
-                var j = new DynamicParameters();
                 foreach (PersonModel person in model.TeamMembers)
                 {
-                    j.Add("@TeamId", model.Id);
-                    j.Add("@PersonId", person.Id);
-                    j.Add("@id", 0, dbType: DbType.Int32);
+                    p = new DynamicParameters();
+                    p.Add("@TeamId", model.Id);
+                    p.Add("@PersonId", person.Id);
 
-                    connection.Execute("dbo.spTeamMembers_Insert", j, commandType: CommandType.StoredProcedure);
+                    connection.Execute("dbo.spTeamMembers_Insert", p, commandType: CommandType.StoredProcedure);
                 }
 
                 return model;
