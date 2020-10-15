@@ -60,7 +60,6 @@
             this.createTournamentLabel.TabIndex = 0;
             this.createTournamentLabel.Text = "Create Tournament";
             this.createTournamentLabel.UseCompatibleTextRendering = true;
-            this.createTournamentLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // tournamentNameLabel
             // 
@@ -137,6 +136,7 @@
             this.createNewTeamLink.TabIndex = 6;
             this.createNewTeamLink.TabStop = true;
             this.createNewTeamLink.Text = "create new";
+            this.createNewTeamLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.CreateNewTeamLink_LinkClicked);
             // 
             // addTeamButton
             // 
@@ -153,6 +153,7 @@
             this.addTeamButton.TabIndex = 7;
             this.addTeamButton.Text = "Add Team";
             this.addTeamButton.UseVisualStyleBackColor = true;
+            this.addTeamButton.Click += new System.EventHandler(this.AddTeamButton_Click);
             // 
             // createPrizeButton
             // 
@@ -169,6 +170,7 @@
             this.createPrizeButton.TabIndex = 7;
             this.createPrizeButton.Text = "Create Prize";
             this.createPrizeButton.UseVisualStyleBackColor = true;
+            this.createPrizeButton.Click += new System.EventHandler(this.CreatePrizeButton_Click);
             // 
             // tournamentPlayersListBox
             // 
@@ -181,6 +183,7 @@
             this.tournamentPlayersListBox.Name = "tournamentPlayersListBox";
             this.tournamentPlayersListBox.Size = new System.Drawing.Size(536, 227);
             this.tournamentPlayersListBox.TabIndex = 4;
+            this.tournamentPlayersListBox.DoubleClick += new System.EventHandler(this.ShowTeamPlayers_DoubleClick);
             // 
             // tournamentPlayersLabel
             // 
@@ -217,7 +220,6 @@
             this.prizeListLabel.Size = new System.Drawing.Size(138, 60);
             this.prizeListLabel.TabIndex = 1;
             this.prizeListLabel.Text = "Prizes";
-            this.prizeListLabel.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // deleteSelectedPrizeButton
             // 
@@ -228,13 +230,13 @@
             this.deleteSelectedPrizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.deleteSelectedPrizeButton.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.deleteSelectedPrizeButton.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.deleteSelectedPrizeButton.Location = new System.Drawing.Point(980, 442);
+            this.deleteSelectedPrizeButton.Location = new System.Drawing.Point(981, 442);
             this.deleteSelectedPrizeButton.Name = "deleteSelectedPrizeButton";
             this.deleteSelectedPrizeButton.Size = new System.Drawing.Size(211, 96);
             this.deleteSelectedPrizeButton.TabIndex = 7;
             this.deleteSelectedPrizeButton.Text = "Delete Selected";
             this.deleteSelectedPrizeButton.UseVisualStyleBackColor = true;
-            this.deleteSelectedPrizeButton.Click += new System.EventHandler(this.button1_Click);
+            this.deleteSelectedPrizeButton.Click += new System.EventHandler(this.DeleteSelectedPrizeButton_Click);
             // 
             // deleteSelectedPlayerButton
             // 
@@ -251,7 +253,7 @@
             this.deleteSelectedPlayerButton.TabIndex = 7;
             this.deleteSelectedPlayerButton.Text = "Delete Selected";
             this.deleteSelectedPlayerButton.UseVisualStyleBackColor = true;
-            this.deleteSelectedPlayerButton.Click += new System.EventHandler(this.button1_Click);
+            this.deleteSelectedPlayerButton.Click += new System.EventHandler(this.DeleteSelectedPlayerButton_Click);
             // 
             // createTournamentButton
             // 
@@ -268,6 +270,7 @@
             this.createTournamentButton.TabIndex = 7;
             this.createTournamentButton.Text = "Create Tournament";
             this.createTournamentButton.UseVisualStyleBackColor = true;
+            this.createTournamentButton.Click += new System.EventHandler(this.CreateTournamentButton_Click);
             // 
             // CreateTournamentForm
             // 

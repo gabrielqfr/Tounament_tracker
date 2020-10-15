@@ -8,12 +8,15 @@ namespace TrackerUI
 {
     public partial class CreateTeamForm : Form
     {
+        ITeamRequester callingForm;
         private List<PersonModel> availableTeamMembers = GlobalConfig.Connection.GetPerson_All();
         private List<PersonModel> selectedTeamMembers = new List<PersonModel>();
-        public CreateTeamForm()
+        public CreateTeamForm(ITeamRequester caller)
         {
             InitializeComponent();
             WireUpLists();
+
+            callingForm = caller;
         }
 
         private void WireUpLists()
@@ -117,8 +120,11 @@ namespace TrackerUI
                 };
 
                 GlobalConfig.Connection.CreateTeam(team);
+
+                callingForm.TeamComplete(team);
+
                 MessageBox.Show("Team created successfully!");
-                ResetForm();
+                this.Close();
             }
             else
             {
@@ -140,15 +146,6 @@ namespace TrackerUI
                 }
 
                 return output;
-            }
-
-            void ResetForm()
-            {
-                availableTeamMembers = GlobalConfig.Connection.GetPerson_All();
-                selectedTeamMembers = new List<PersonModel>();
-                teamNameValue.Clear();
-                selectTeamMemberComboBox.Refresh();
-                WireUpLists();
             }
         }
     }

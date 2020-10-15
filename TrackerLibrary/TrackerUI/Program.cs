@@ -1,6 +1,7 @@
 using System;
 using System.Windows.Forms;
 using TrackerLibrary;
+using TrackerLibrary.Models;
 
 namespace TrackerUI
 {
@@ -19,9 +20,7 @@ namespace TrackerUI
             // Initialize the database connections
             TrackerLibrary.GlobalConfig.InitializeConnections(DatabaseType.Sql);
 
-            Application.Run(new CreateTeamForm());
-
-            //Application.Run(new TournamentDashboardForm());
+            Application.Run(new TournamentDashboardForm());
         }
     }
 }

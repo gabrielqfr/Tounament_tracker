@@ -87,6 +87,7 @@
             this.loadTournamentButton.TabIndex = 7;
             this.loadTournamentButton.Text = "Load Tournament";
             this.loadTournamentButton.UseVisualStyleBackColor = true;
+            this.loadTournamentButton.Click += new System.EventHandler(this.LoadTournamentButton_Click);
             // 
             // createTournamentButton
             // 
@@ -103,6 +104,7 @@
             this.createTournamentButton.TabIndex = 7;
             this.createTournamentButton.Text = "Create tournament";
             this.createTournamentButton.UseVisualStyleBackColor = true;
+            this.createTournamentButton.Click += new System.EventHandler(this.CreateTournamentButton_Click);
             // 
             // TournamentDashboardForm
             // 
@@ -117,7 +119,7 @@
             this.Controls.Add(this.tournamentDashboardLabel);
             this.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "TournamentDashboardForm";
             this.Text = "Tournament Dashboard";
             this.ResumeLayout(false);
