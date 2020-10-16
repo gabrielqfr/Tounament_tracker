@@ -148,6 +148,7 @@ namespace TrackerLibrary.DataAccess
             var p = new DynamicParameters();
             p.Add("@TournamentName", model.TournamentName);
             p.Add("@EntryFee", model.EntryFee);
+            p.Add("@Active", 1);
             p.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
 
             connection.Execute("dbo.spTournaments_Insert", p, commandType: CommandType.StoredProcedure);
@@ -335,6 +336,17 @@ namespace TrackerLibrary.DataAccess
                     connection.Execute("dbo.spMatchupEntry_Update", p, commandType: CommandType.StoredProcedure);
                 }
 
+            }
+        }
+
+        public void CompleteTournament(TournamentModel model)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
+            {
+                var p = new DynamicParameters();
+                p.Add("@id", model.Id);
+
+                connection.Execute("dbo.spTournaments_Complete", p, commandType: CommandType.StoredProcedure);
             }
         }
     }
