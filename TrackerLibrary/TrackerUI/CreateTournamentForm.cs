@@ -141,6 +141,8 @@ namespace TrackerUI
 
                 GlobalConfig.Connection.CreateTournament(tournament);
 
+                tournament.AlertUsersToNewRound();
+
                 callingForm.TournamentComplete(tournament);
 
                 MessageBox.Show("Tournament created successfully!");

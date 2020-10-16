@@ -152,6 +152,13 @@ namespace TrackerUI
 
         private void ScoreButton_Click(object sender, EventArgs e)
         {
+            string errorMessage = ValidateData();
+            if (errorMessage.Length > 0)
+            {
+                MessageBox.Show($"Input error: { errorMessage }");
+                return;
+            }
+
             MatchupModel matchup = (MatchupModel)matchupListBox.SelectedItem;
             double teamOneScore = 0, teamTwoScore = 0;
 
@@ -192,41 +199,44 @@ namespace TrackerUI
                 }
             }
 
-            if (teamOneScore > teamTwoScore)
+            try
             {
-                matchup.Winner = matchup.Entries[0].TeamCompeting;
+                TournamentLogic.UpdateTournamentResults(tournament);
             }
-            else if (teamOneScore < teamTwoScore)
+            catch (Exception ex)
             {
-                matchup.Winner = matchup.Entries[1].TeamCompeting;
-            }
-            else
-            {
-                MessageBox.Show("I do not handle tie games");
-            }
-
-            foreach (List<MatchupModel> round in tournament.Rounds)
-            {
-                foreach (MatchupModel rm in round)
-                {
-                    foreach (MatchupEntryModel me in rm.Entries)
-                    {
-                        if (me.ParentMatchup != null)
-                        {
-                            if (me.ParentMatchup.Id == matchup.Id)
-                            {
-                                me.TeamCompeting = matchup.Winner;
-                                GlobalConfig.Connection.UpdateMatchup(rm);
-                            }
-                        }
-                    }
-                }
+                MessageBox.Show($"The application had the following error: { ex.Message }");
+                return;
             }
 
             LoadMatchups((int)roundDropdown.SelectedItem);
 
-            GlobalConfig.Connection.UpdateMatchup(matchup);
+        }
 
+        private string ValidateData()
+        {
+            string output = "";
+
+            bool scoreOneValid = double.TryParse(teamOneScoreValue.Text, out double teamOneScore);
+            bool scoreTwoValid = double.TryParse(teamTwoScoreValue.Text, out double teamTwoScore);
+
+            if (!scoreOneValid)
+            {
+                output = "The Score One value is not a valid number";
+            }
+            else if (!scoreTwoValid)
+            {
+                output = "The Score Two value is not a valid number";
+            }
+            else if (teamOneScore == 0 && teamTwoScore == 0)
+            {
+                output = "You need to enter a score for at least one team";            }
+            else if (teamOneScore == teamTwoScore)
+            {
+                output = "We do not allow ties in this application";
+            }
+
+            return output;
         }
 
         private void UnplayedOnlyCheckbox_CheckedChanged(object sender, EventArgs e)
